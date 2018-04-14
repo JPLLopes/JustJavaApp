@@ -3,6 +3,7 @@ package projetos.joao.justjava;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import java.text.NumberFormat;
@@ -24,8 +25,11 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the order button is clicked.
      */
     public void submitOrder(View view) {
+        CheckBox whippedCreamCheckBox = findViewById(R.id.whipped_cream_checkbox);
+
         int price = calculatePrice();
-        String orderSummary = createOrderSummary(price);
+        boolean hasWhippedCream = whippedCreamCheckBox.isChecked();
+        String orderSummary = createOrderSummary(price,hasWhippedCream);
 
         displayMessage(orderSummary);
     }
@@ -36,11 +40,12 @@ public class MainActivity extends AppCompatActivity {
      *
      * @return order summary
      */
-    private String createOrderSummary(int price){
-        String orderSummary = "Name: João" + "\nQuantity: " + quantity + "\nTotal: $" + price + "\nThank you!";
+    private String createOrderSummary(int price, boolean hasWhippedCream){
+        String orderSummary = "Name: João" + "\nAdd whipped cream? " + hasWhippedCream + "\nQuantity: " + quantity + "\nTotal: $" + price + "\nThank you!";
 
         return orderSummary;
     }
+
     /**
      * Calculates the price of the order.
      *
