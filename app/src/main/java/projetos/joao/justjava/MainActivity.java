@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import java.text.NumberFormat;
@@ -26,22 +27,33 @@ public class MainActivity extends AppCompatActivity {
      */
     public void submitOrder(View view) {
         CheckBox whippedCreamCheckBox = findViewById(R.id.whipped_cream_checkbox);
+        CheckBox chocolateCheckBox = findViewById(R.id.chocolate_checkbox);
+        EditText nameEditText = findViewById(R.id.name_edit_text_view);
 
         int price = calculatePrice();
         boolean hasWhippedCream = whippedCreamCheckBox.isChecked();
-        String orderSummary = createOrderSummary(price,hasWhippedCream);
+        boolean hasChocolate = chocolateCheckBox.isChecked();
+        String name = nameEditText.getText().toString();
+        String orderSummary = createOrderSummary(name, price, hasWhippedCream, hasChocolate);
 
         displayMessage(orderSummary);
     }
 
     /**
-     *
      * Creates a summary of the order.
      *
+     * @param price           total price of the order
+     * @param hasWhippedCream did the user add whipped cream or not
+     * @param hasChocolate did the user add chocolate or not
      * @return order summary
      */
-    private String createOrderSummary(int price, boolean hasWhippedCream){
-        String orderSummary = "Name: João" + "\nAdd whipped cream? " + hasWhippedCream + "\nQuantity: " + quantity + "\nTotal: $" + price + "\nThank you!";
+    private String createOrderSummary(String name, int price, boolean hasWhippedCream, boolean hasChocolate) {
+        String orderSummary = "Name: " + name;
+        orderSummary += "\nAdd whipped cream? " + hasWhippedCream;
+        orderSummary += "\nAdd chocolate? " + hasChocolate;
+        orderSummary += "\nQuantity: " + quantity;
+        orderSummary += "\nTotal: $" + price;
+        orderSummary += "\nThank you!";
 
         return orderSummary;
     }
@@ -59,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
      * This method displays the given quantity value on the screen.
      */
     private void displayQuantity(int number) {
-        TextView quantityTextView = (TextView) findViewById(R.id.quantity_text_view);
+        TextView quantityTextView = findViewById(R.id.quantity_text_view);
         quantityTextView.setText("" + number);
     }
 
@@ -67,14 +79,14 @@ public class MainActivity extends AppCompatActivity {
      * This method displays the given text on the screen.
      */
     private void displayMessage(String message) {
-        TextView orderSummaryTextView = (TextView) findViewById(R.id.order_summary_text_view);
+        TextView orderSummaryTextView = findViewById(R.id.order_summary_text_view);
         orderSummaryTextView.setText(message);
     }
 
     /**
      * This method is called when the plus button is clicked.
      */
-    public void increment(View view){
+    public void increment(View view) {
         quantity++;
         displayQuantity(quantity);
     }
@@ -82,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * This method is called when the minus button is clicked.
      */
-    public void decrement(View view){
+    public void decrement(View view) {
         quantity--;
         displayQuantity(quantity);
     }

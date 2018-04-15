@@ -9,4 +9,6 @@
     <string name="initial_quantity_value">0</string>
     <string name="toppings_header_text">Toppings</string>
     <string name="whipped_cream_text">Whipped Cream</string>
+    <string name="chocolate_text">Chocolate</string>
+    <string name="edit_text_hint">Enter your name here</string>
 </resources>
