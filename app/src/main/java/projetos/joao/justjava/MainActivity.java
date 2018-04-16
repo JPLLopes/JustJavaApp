@@ -28,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * This method is called when the order button is clicked.
+     * This method takes all the user choices and creates an Intent to an e-mail application with the order
+     * summary so an e-mail can be sent to place the order.
      */
     public void submitOrder(View view) {
 
