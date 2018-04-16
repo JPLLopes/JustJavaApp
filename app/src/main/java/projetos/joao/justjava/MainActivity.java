@@ -1,6 +1,8 @@
 package projetos.joao.justjava;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -28,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the order button is clicked.
      */
     public void submitOrder(View view) {
+
         CheckBox whippedCreamCheckBox = findViewById(R.id.whipped_cream_checkbox);
         CheckBox chocolateCheckBox = findViewById(R.id.chocolate_checkbox);
         EditText nameEditText = findViewById(R.id.name_edit_text_view);
@@ -39,7 +42,14 @@ public class MainActivity extends AppCompatActivity {
         String name = nameEditText.getText().toString();
         String orderSummary = createOrderSummary(name, price, hasWhippedCream, hasChocolate);
 
-        displayMessage(orderSummary);
+        Intent emailIntent = new Intent(Intent.ACTION_SENDTO);
+        emailIntent.setData(Uri.parse("mailto:"));
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "JustJava order for " + name);
+        emailIntent.putExtra(Intent.EXTRA_TEXT, orderSummary);
+
+        if (emailIntent.resolveActivity(getPackageManager()) != null) {
+            startActivity(emailIntent);
+        }
     }
 
     /**
@@ -92,14 +102,6 @@ public class MainActivity extends AppCompatActivity {
     private void displayQuantity(int number) {
         TextView quantityTextView = findViewById(R.id.quantity_text_view);
         quantityTextView.setText("" + number);
-    }
-
-    /**
-     * This method displays the given text on the screen.
-     */
-    private void displayMessage(String message) {
-        TextView orderSummaryTextView = findViewById(R.id.order_summary_text_view);
-        orderSummaryTextView.setText(message);
     }
 
     /**

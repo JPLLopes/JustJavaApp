@@ -14,10 +14,10 @@
             android:id="@+id/name_edit_text_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
             android:hint="@string/edit_text_hint"
-            android:inputType="textCapWords"/>
+            android:inputType="textCapWords" />
 
         <TextView
             android:layout_width="match_parent"
@@ -89,26 +89,7 @@
                 android:layout_height="48dp"
                 android:onClick="increment"
                 android:text="@string/plus_button_text" />
-
         </LinearLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:text="@string/order_summary_text_view_header"
-            android:textAllCaps="true" />
-
-        <TextView
-            android:id="@+id/order_summary_text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:text="@string/initial_price_value"
-            android:textColor="#000000"
-            android:textSize="16sp" />
 
         <Button
             android:layout_width="wrap_content"
